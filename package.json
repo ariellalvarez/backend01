@@ -5,15 +5,17 @@
   },
   "name": "backendentrega",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "http-server.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node server-http.js",
+    "dev": "nodemon server-http.js"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
