@@ -5,11 +5,11 @@
   },
   "name": "backendentrega",
   "version": "1.0.0",
-  "main": "http-server.js",
+  "main": "server-express.js",
   "type": "module",
   "scripts": {
-    "start": "node server-http.js",
-    "dev": "nodemon server-http.js"
+    "start": "node server-express.js",
+    "dev": "nodemon ."
   },
   "author": "",
   "license": "ISC",
