@@ -25,7 +25,7 @@ export class UserManager {
             };
             const usersFile = await this.getUsers();
             const userExist = usersFile.find((u) => u.username === user.username);
-            console.log(userExist);
+            //console.log(userExist);
             if(userExist) return null
             usersFile.push(user);
             await fs.promises.writeFile(this.path, JSON.stringify(usersFile));
