@@ -4,6 +4,8 @@ const router = Router();
 import ProductManager from '../managers/product.manager.js';
 const productManager = new ProductManager('./src/data/products.json');
 
+import {productValidator} from '../middlewares/productValidator.js'
+
 router.get('/', async (req, res) => {
     try{
 
@@ -36,7 +38,7 @@ router.get('/:idProd', async (req, res) => {
     }
   });
 
-  router.post('/', async (req, res) => {
+  router.post('/', productValidator, async (req, res) => {
     try {
       console.log(req.body);
       const product = req.body;
