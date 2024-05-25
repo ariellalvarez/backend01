@@ -11,8 +11,11 @@ router.get('/', async (req, res) => {
         console.log(limit);
 
         const products =await productManager.getProducts()
-        res.status(200).json(products);
-
+        if(limit > 0){
+            res.status(200).json(products.slice(0, limit));
+        }else{            
+            res.status(200).json(products);
+        }
         
     }catch(error){
         res.status(404).json({ message: error.message });
