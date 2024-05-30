@@ -6,6 +6,8 @@ const productManager = new ProductManager('./src/data/products.json');
 
 import {productValidator} from '../middlewares/productValidator.js'
 
+//import { upload } from '../middlewares/multer.js';
+
 router.get('/', async (req, res) => {
     try{
 
@@ -72,6 +74,19 @@ router.get('/:idProd', async (req, res) => {
       console.log(error);
       res.status(500).send(error.message);
     }
+
+    /*router.post("/profile", upload.single('profile'), async (req, res) => {
+      try {
+        console.log(req.file);
+        const productBody = req.body;
+        productBody.profile = req.file.path
+        const product = await productManager.createProduct(productBody);
+        res.status(201).json(product);
+      } catch (error) {
+        res.status(500).json({ msg: error.message });
+      }
+    });*/
+
   });
 
   export default router;
