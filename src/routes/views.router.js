@@ -9,7 +9,7 @@ const productManager = new ProductManager('./src/data/products.json');
     res.render('home')
 })*/
 
-router.get('/realTimeProducts', (req, res)=>{
+router.get('/realtimeproducts', (req, res)=>{
     res.render('realTimeProducts')
 })
 

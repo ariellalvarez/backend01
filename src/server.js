@@ -6,6 +6,8 @@ import { __dirname } from './path.js';
 import handlebars from 'express-handlebars';
 import viewsRouter from './routes/views.router.js';
 
+import { Server } from 'socket.io';
+
 const app = express()
 
 app.use(express.static(`${__dirname}/public`));
@@ -22,8 +24,22 @@ app.set('view engine', 'handlebars');
 
 app.use('/', viewsRouter);
 
+app.get('/websocket', (req, res)=>{
+    res.render('websocket')
+  })
+
 const PORT = 8080
 
-app.listen(PORT,()=>{
+const httpServer = app.listen(PORT,()=>{
     console.log(`Listening to ${PORT}`)
 })
+
+const socketServer = new Server(httpServer);
+
+socketServer.on('connection', (socket)=>{
+    console.log(`Usuario conectado: ${socket.id}`);
+  
+    
+
+})
+
