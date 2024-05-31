@@ -39,6 +39,9 @@ const socketServer = new Server(httpServer);
 socketServer.on('connection', (socket)=>{
     console.log(`Usuario conectado: ${socket.id}`);
   
+    socket.on('disconnect', ()=>{
+        console.log('Usuario desconectado');
+      })
     
 
 })
