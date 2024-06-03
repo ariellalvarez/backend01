@@ -24,9 +24,11 @@ app.set('view engine', 'handlebars');
 
 app.use('/', viewsRouter);
 
-app.get('/websocket', (req, res)=>{
+/*app.get('/websocket', (req, res)=>{
     res.render('websocket')
-  })
+  })*/
+
+
 
 const PORT = 8080
 
@@ -36,6 +38,8 @@ const httpServer = app.listen(PORT,()=>{
 
 const socketServer = new Server(httpServer);
 
+const products = [];
+
 socketServer.on('connection', (socket)=>{
     console.log(`Usuario conectado: ${socket.id}`);
   
@@ -44,5 +48,23 @@ socketServer.on('connection', (socket)=>{
       })
     
 
-})
+    socket.emit('saludoDesdeBack', 'Bienvenido a websockets')
+
+    socket.on('respuestaDesdeFront', (message)=>{
+      console.log(message);
+    })
+
+    socket.on('newProduct', (product)=>{
+      products.push(product);
+      socketServer.emit('products', products);
+    })
+
+    app.post('/websocket', (req,res)=>{
+      const { message } = req.body;
+      socketServer.emit('message', message);
+      res.send('se envió mensaje al socket del cliente')
+    })
+  
+
+  })
 

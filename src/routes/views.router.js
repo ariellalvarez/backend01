@@ -5,12 +5,14 @@ const router = Router();
 import ProductManager from '../managers/product.manager.js';
 const productManager = new ProductManager('./src/data/products.json');
 
-/*router.get('/', (req, res)=>{
-    res.render('home')
-})*/
 
 router.get('/realtimeproducts', (req, res)=>{
     res.render('realTimeProducts')
+})
+
+
+router.get('/websocket', (req, res)=>{
+    res.render('websocket')
 })
 
 
